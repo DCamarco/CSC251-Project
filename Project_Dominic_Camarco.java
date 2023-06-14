@@ -2,6 +2,12 @@ import java.util.Scanner;
 
 public class Project_Dominic_Camarco {
    Scanner keyboard = new Scanner(System.in);
+   
+   
+   
+   
+   
+   
    public static class InsurancePolicy {
     // Attributes
     private int policyNumber;
@@ -13,7 +19,9 @@ public class Project_Dominic_Camarco {
     private double height;
     private double weight;
 
-    // No-arg constructor
+    /**
+     * No-arg constructor.
+     */
     public InsurancePolicy() {
         this.policyNumber = 0;
         this.providerName = "";
@@ -25,7 +33,17 @@ public class Project_Dominic_Camarco {
         this.weight = 0.0;
     }
 
-    // Constructor
+    /**
+     * Constructor.
+     * @param policyNumber The policy number.
+     * @param providerName The name of the insurance provider.
+     * @param firstName The first name of the policy holder.
+     * @param lastName The last name of the policy holder.
+     * @param age The age of the policy holder.
+     * @param smokingStatus The smoking status of the policy holder.
+     * @param height The height of the policy holder.
+     * @param weight The weight of the policy holder.
+     */
     public InsurancePolicy(int policyNumber, String providerName, String firstName, String lastName, int age,
                   String smokingStatus, double height, double weight) {
         this.policyNumber = policyNumber;
@@ -40,78 +58,131 @@ public class Project_Dominic_Camarco {
 
     // Getters and Setters
     // Getters
+    /**
+     * @return The policy number.
+     */
    public int getPolicyNumber() {
        return policyNumber;
    }
    
+   /**
+    * @return The provider name.
+    */
    public String getProviderName() {
        return providerName;
    }
    
+   /**
+    * @return The first name of the policy holder.
+    */
    public String getFirstName() {
        return firstName;
    }
    
+   /**
+    * @return The last name of the policy holder.
+    */
    public String getLastName() {
        return lastName;
    }
    
+   /**
+    * @return The age of the policy holder.
+    */
    public int getAge() {
        return age;
    }
    
+   /**
+    * @return The smoking status of the policy holder.
+    */
    public String getSmokingStatus() {
        return smokingStatus;
    }
    
+   /**
+    * @return The height of the policy holder.
+    */
    public double getHeight() {
        return height;
    }
    
+   /**
+    * @return The weight of the policy holder.
+    */
    public double getWeight() {
        return weight;
    }
    
    // Setters
+   /**
+    * @param policyNumber The policy number to set.
+    */
    public void setPolicyNumber(int policyNumber) {
        this.policyNumber = policyNumber;
    }
    
+   /**
+    * @param providerName The provider name to set.
+    */
    public void setProviderName(String providerName) {
        this.providerName = providerName;
    }
    
+   /**
+    * @param firstName The first name of the policy holder to set.
+    */
    public void setFirstName(String firstName) {
        this.firstName = firstName;
    }
    
+   /**
+    * @param lastName The last name of the policy holder to set.
+    */
    public void setLastName(String lastName) {
        this.lastName = lastName;
    }
    
+   /**
+    * @param age The age of the policy holder to set.
+    */
    public void setAge(int age) {
        this.age = age;
    }
    
+   /**
+    * @param smokingStatus The smoking status of the policy holder to set.
+    */
    public void setSmokingStatus(String smokingStatus) {
        this.smokingStatus = smokingStatus;
    }
    
+   /**
+    * @param height The height of the policy holder to set.
+    */
    public void setHeight(double height) {
        this.height = height;
    }
    
+   /**
+    * @param weight The weight of the policy holder to set.
+    */
    public void setWeight(double weight) {
        this.weight = weight;
    }
 
-
-    // BMI Calculation
+    /**
+     * Calculate the BMI of the policy holder.
+     * @return The calculated BMI.
+     */
     public double calculateBMI() {
         return (this.weight * 703) / (this.height * this.height);
     }
 
-    // Policy Price Calculation
+    /**
+     * Calculate the price of the policy.
+     * @return The calculated price.
+     */
     public double calculatePolicyPrice() {
         double baseFee = 600;
         double additionalFee = 0;
