@@ -16,6 +16,8 @@ public class Project_Dominic_Camarco {
     private String providerName;
     private PolicyHolder policyHolder;
     
+    private static int policyObjects; //Static field to track number of policy objects
+    
 
     /**
      * No-arg constructor.
