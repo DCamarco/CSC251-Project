@@ -14,6 +14,7 @@ public class Project_Dominic_Camarco {
     // Attributes
     private int policyNumber;
     private String providerName;
+    private PolicyHolder policyHolder;
     
 
     /**
@@ -74,18 +75,28 @@ public class Project_Dominic_Camarco {
         double baseFee = 600;
         double additionalFee = 0;
 
-        if (this.age > 50)
+        if (policyHolder.age > 50)
             additionalFee += 75;
 
-        if (this.smokingStatus.equals("smoker"))
+        if (policyHolder.smokingStatus.equals("smoker"))
             additionalFee += 100;
 
-        double bmi = this.calculateBMI();
+        double bmi = policyHolder.calculateBMI();
 
         if (bmi > 35)
             additionalFee += (bmi - 35) * 20;
 
         return baseFee + additionalFee;
+    }
+    
+    //toString Method
+    //@return String to output
+    public String toString() {
+         String str = "\nPolicy Number: " + policy.getPolicyNumber() +
+                      "\nProvider Name: " + policy.getProviderName() +
+                      policyHolder.toString() +
+                      "Policy Price: $" + String.format("%.2f", policy.calculatePolicyPrice())
+         return str;
     }
 }
    
@@ -142,23 +153,12 @@ public class Project_Dominic_Camarco {
            // Output policy details
            for (InsurancePolicy policy : policies) {
               policyCounter++;
-           
-              System.out.println("\nPolicy Number: " + policy.getPolicyNumber());
-              System.out.println("Provider Name: " + policy.getProviderName());
-              System.out.println("Policyholder’s First Name: " + policy.getFirstName());
-              System.out.println("Policyholder’s Last Name: " + policy.getLastName());
-              System.out.println("Policyholder’s Age: " + policy.getAge());
-              System.out.println("Policyholder’s Smoking Status: " + policy.getSmokingStatus());
+              
               if(policy.getSmokingStatus().equalsIgnoreCase("smoker")){
                smokerCounter++;
               }
-              System.out.println("Policyholder’s Height: " + policy.getHeight() + " inches");
-              System.out.println("Policyholder’s Weight: " + policy.getWeight() + " pounds");
-              System.out.println("Policyholder’s BMI: " + String.format("%.2f", policy.calculateBMI()));
-              System.out.println("Policy Price: $" + String.format("%.2f", policy.calculatePolicyPrice()));
-              System.out.println(" ");
               
-              
+              policy.toString();
         }
         
         scanner.close();
