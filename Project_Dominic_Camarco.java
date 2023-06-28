@@ -6,17 +6,13 @@ public class Project_Dominic_Camarco {
    Scanner keyboard = new Scanner(System.in);
    
    
-   
-   
-   
-   
    public static class InsurancePolicy {
     // Attributes
     private int policyNumber;
     private String providerName;
-    private PolicyHolder policyHolder;
+    private PolicyHolder policyHolder; //To aggregate a policyHolder into policy object
     
-    private static int policyObjects; //Static field to track number of policy objects
+    private static int policyObjects = 0; //Static field to track number of policy objects
     
 
     /**
@@ -25,6 +21,7 @@ public class Project_Dominic_Camarco {
     public InsurancePolicy() {
         this.policyNumber = 0;
         this.providerName = "";
+        this.policyHolder = new PolicyHolder();
     }
 
     /**
@@ -32,9 +29,11 @@ public class Project_Dominic_Camarco {
      * @param policyNumber The policy number.
      * @param providerName The name of the insurance provider.
      */
-    public InsurancePolicy(int policyNumber, String providerName) {
+    public InsurancePolicy(int policyNumber, String providerName, PolicyHolder policyHolder) {
         this.policyNumber = policyNumber;
         this.providerName = providerName;
+        this.policyHolder = new PolicyHolder(policyHolder);
+        policyObjects++;
     }
 
     // Getters and Setters
@@ -51,6 +50,13 @@ public class Project_Dominic_Camarco {
     */
    public String getProviderName() {
        return providerName;
+   }
+   
+   /**
+      @return Reference copy of the policyHolder object
+   */
+   public PolicyHolder getPolicyHolder() {
+      return new PolicyHolder(policyHolder);
    }
    
       
@@ -77,10 +83,10 @@ public class Project_Dominic_Camarco {
         double baseFee = 600;
         double additionalFee = 0;
 
-        if (policyHolder.age > 50)
+        if (policyHolder.getAge() > 50)
             additionalFee += 75;
 
-        if (policyHolder.smokingStatus.equals("smoker"))
+        if (policyHolder.getSmokingStatus().equals("smoker"))
             additionalFee += 100;
 
         double bmi = policyHolder.calculateBMI();
@@ -94,10 +100,10 @@ public class Project_Dominic_Camarco {
     //toString Method
     //@return String to output
     public String toString() {
-         String str = "\nPolicy Number: " + policy.getPolicyNumber() +
-                      "\nProvider Name: " + policy.getProviderName() +
-                      policyHolder.toString() +
-                      "Policy Price: $" + String.format("%.2f", policy.calculatePolicyPrice())
+         String str = String.format("\nPolicy Number: " + getPolicyNumber() +
+                      "\nProvider Name: " + getProviderName() +
+                      policyHolder +
+                      "\nPolicy Price: $" + "%.2f", calculatePolicyPrice());
          return str;
     }
 }
@@ -139,9 +145,11 @@ public class Project_Dominic_Camarco {
            double height = scanner.nextDouble();
    
            double weight = scanner.nextDouble();
-   
+           
+           // Create PolicyHolder object 
+           PolicyHolder holder = new PolicyHolder(firstName, lastName, age, smokingStatus, height, weight);
            // Create Policy object
-           InsurancePolicy policy = new InsurancePolicy(policyNumber, providerName, firstName, lastName, age, smokingStatus, height, weight);
+           InsurancePolicy policy = new InsurancePolicy(policyNumber, providerName, holder);
            policies.add(policy);
            
            if (scanner.hasNext()) {
@@ -149,24 +157,23 @@ public class Project_Dominic_Camarco {
            }
         }
            
-           int policyCounter = 0;
            int smokerCounter = 0;
    
            // Output policy details
            for (InsurancePolicy policy : policies) {
-              policyCounter++;
               
-              if(policy.getSmokingStatus().equalsIgnoreCase("smoker")){
+              if(policy.getPolicyHolder().getSmokingStatus().equalsIgnoreCase("smoker")){
                smokerCounter++;
               }
               
-              policy.toString();
+              System.out.println(policy);
         }
         
         scanner.close();
         
+        System.out.println("\nThere were " + InsurancePolicy.policyObjects + " Policy objects created.");
         System.out.println("The number of policies with a smoker is: " + smokerCounter);
-        System.out.println("The number of policies with a non-smoker is: " + (policyCounter - smokerCounter));
+        System.out.println("The number of policies with a non-smoker is: " + (InsurancePolicy.policyObjects - smokerCounter));
    
       } catch (FileNotFoundException e) {
         System.out.println("An error occurred.");

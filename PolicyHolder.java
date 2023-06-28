@@ -22,8 +22,6 @@ public class PolicyHolder {
 
     /**
      * Constructor.
-     * @param policyNumber The policy number.
-     * @param providerName The name of the insurance provider.
      * @param firstName The first name of the policy holder.
      * @param lastName The last name of the policy holder.
      * @param age The age of the policy holder.
@@ -39,6 +37,21 @@ public class PolicyHolder {
         this.smokingStatus = smokingStatus;
         this.height = height;
         this.weight = weight;
+    }
+    
+    /**
+      The copy constructor to initializes the object 
+      as a copy of another PolicyHolder object
+      @param object2 The object to copy
+    */
+    
+    public PolicyHolder(PolicyHolder object2) {
+      this.firstName = object2.firstName;
+        this.lastName = object2.lastName;
+        this.age = object2.age;
+        this.smokingStatus = object2.smokingStatus;
+        this.height = object2.height;
+        this.weight = object2.weight;
     }
 
     // Getters and Setters
@@ -141,21 +154,17 @@ public class PolicyHolder {
    //@return String to output
    public String toString() {
       //Creating a string to describe the policyHolders information
-      String str = "Policy Holder's First Name: " + firstName +
+      String str = "\nPolicy Holder's First Name: " + firstName +
                    "\nPolicy Holder's Last Name: " + lastName +
                    "\nPolicy Holder's Age: " + age + 
                    "\nPolicy Holder's Smoking Status: " + smokingStatus +
-                   "\nPolicy Holder's Height: " + height + 
-                   "\nPolicy Holder's Weight: " + weight +
+                   "\nPolicy Holder's Height: " + height + " inches" +
+                   "\nPolicy Holder's Weight: " + weight + " pounds" +
                    "\nPolicy Holder's BMI: " +  String.format("%.2f", calculateBMI());
                    
       //Return str
       return str;
    }
-
-
-
-
 
 
 }
