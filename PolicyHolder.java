@@ -137,7 +137,21 @@ public class PolicyHolder {
         return (this.weight * 703) / (this.height * this.height);
     }
 
-
+   //toString Method
+   //@return String to output
+   public String toString() {
+      //Creating a string to describe the policyHolders information
+      String str = "Policy Holder's First Name: " + firstName +
+                   "\nPolicy Holder's Last Name: " + lastName +
+                   "\nPolicy Holder's Age: " + age + 
+                   "\nPolicy Holder's Smoking Status: " + smokingStatus +
+                   "\nPolicy Holder's Height: " + height + 
+                   "\nPolicy Holder's Weight: " + weight +
+                   "\nPolicy Holder's BMI: " +  String.format("%.2f", calculateBMI());
+                   
+      //Return str
+      return str;
+   }
 
 
 
